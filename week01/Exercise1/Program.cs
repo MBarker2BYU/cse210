@@ -4,6 +4,21 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the Exercise1 Project.");
+        //Cleanup to look nice.
+        Console.Clear();
+
+        //Ask the user for their fisrt and last name.
+        var firstName = Program.PromptUser("What is your first name?");
+        var lastName = Program.PromptUser("What is your last name?");
+
+        //Format their answers in to a response.
+        Console.WriteLine($"Your name is {firstName}, {firstName} {lastName}.");
+    }
+
+    //Reusable Code
+    private static string PromptUser(string prompt)
+    {
+        Console.WriteLine(prompt);
+        return Console.ReadLine();
     }
 }
