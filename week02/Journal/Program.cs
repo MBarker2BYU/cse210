@@ -12,16 +12,26 @@ class Program
     
     static void Main(string[] args)
     {
-        HandleLoadingSettingsFile();
-        
+        try
+        {
+            if (HandleLoadingSettingsFile())
+            {
+                
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
-    private static void HandleLoadingSettingsFile()
+    private static bool HandleLoadingSettingsFile()
     {
         
     }
 
-    private static void HandleSettingsUpdate()
+    private static bool HandleSettingsUpdate()
     {
     }
 

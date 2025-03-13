@@ -53,6 +53,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YouTubeVideos", "week04\You
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineOrdering", "week04\OnlineOrdering\OnlineOrdering.csproj", "{E1B72617-DE50-4DD7-900B-8C51A2CE59DC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sparta", "Sparta", "{2C431768-27E2-4BE4-A9FD-5441FA32BA46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpartanSystems", "Sparta\SpartanSystems\SpartanSystems.csproj", "{A89ADD42-DE20-4121-A77F-5816958882DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -127,6 +131,10 @@ Global
 		{E1B72617-DE50-4DD7-900B-8C51A2CE59DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1B72617-DE50-4DD7-900B-8C51A2CE59DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1B72617-DE50-4DD7-900B-8C51A2CE59DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A89ADD42-DE20-4121-A77F-5816958882DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A89ADD42-DE20-4121-A77F-5816958882DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A89ADD42-DE20-4121-A77F-5816958882DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A89ADD42-DE20-4121-A77F-5816958882DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -149,6 +157,7 @@ Global
 		{6D76A1CF-EC33-4A11-A4D1-875E3BC9B0F4} = {F02862B3-F181-4F4C-9998-E7B60A408DE0}
 		{A6709D86-1F90-495D-8153-747314A4A638} = {DF91008F-F53E-47FA-8705-F7975A484AC4}
 		{E1B72617-DE50-4DD7-900B-8C51A2CE59DC} = {DF91008F-F53E-47FA-8705-F7975A484AC4}
+		{A89ADD42-DE20-4121-A77F-5816958882DD} = {2C431768-27E2-4BE4-A9FD-5441FA32BA46}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F0FE697C-A888-4331-AE3F-A57311A5E554}
