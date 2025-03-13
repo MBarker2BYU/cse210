@@ -5,5 +5,7 @@ public enum MenuItem
     AddEntry,
     DisplayAll,
     LoadFromFile,
-    SaveToFile
+    SaveToFile,
+    Settings,
+    Exit
 }

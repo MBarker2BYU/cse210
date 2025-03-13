@@ -6,7 +6,7 @@ public interface IJournal
 
     public JournalEntry NewJournalEntry();
     
-    public bool SaveToFile(string filename);
-    public bool LoadFromFile(string filename);
+    public bool SaveToFile(string filename, out Exception exception);
+    public bool LoadFromFile(string filename, out Exception exception);
     public void DisplayAll();
 }

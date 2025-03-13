@@ -8,10 +8,4 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="SpartanMenuSystems">
-      <HintPath>..\..\..\..\..\Personal\SpartanMenuSystems.Retired\SpartanMenuSystems\SpartanMenuSystems\bin\Debug\net8.0\SpartanMenuSystems.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
