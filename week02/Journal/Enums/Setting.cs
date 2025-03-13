@@ -1,41 +1,49 @@
 ﻿// ***********************************************************************
 // Assembly        : Journal
 // Author            : Matthew D. Barker
-// Created           : 03-05-2025
+// Created           : 03-13-2025
 //
 // Last Modified By : Matthew D. Barker
-// Last Modified On : 03-10-2025
+// Last Modified On : 03-13-2025
 // ***********************************************************************
-// <copyright file="IJournalEntry.cs" company="Journal">
+// <copyright file="Setting.cs" company="Journal">
 //     Copyright (c) Spartan Systems. All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-
-namespace Journal.Interfaces;
+namespace Journal.Enums;
 
 /// <summary>
-/// Interface IJournalEntry
+/// Enum Setting
 /// </summary>
-public interface IJournalEntry
+public enum Setting
 {
     /// <summary>
-    /// Gets the date.
+    /// The filename
     /// </summary>
-    /// <value>The date.</value>
-    public string Date { get; }
+    Filename,
     /// <summary>
-    /// Gets the prompt text.
+    /// The background color
     /// </summary>
-    /// <value>The prompt text.</value>
-    public string PromptText { get; }
+    BackgroundColor,
     /// <summary>
-    /// Gets or sets the entry text.
+    /// The foreground color
     /// </summary>
-    /// <value>The entry text.</value>
-    public string EntryText { get; set; }
+    ForegroundColor,
     /// <summary>
-    /// Displays this instance.
+    /// The automatic save
     /// </summary>
-    public void Display();
+    AutoSave,
+    /// <summary>
+    /// The update settings
+    /// </summary>
+    UpdateSettings,
+    /// <summary>
+    /// The view settings
+    /// </summary>
+    ViewSettings,
+    /// <summary>
+    /// The exit
+    /// </summary>
+    Exit
 }

@@ -157,8 +157,10 @@ namespace SpartanSystems
         /// <param name="prompt">The prompt.</param>
         /// <param name="response">The response.</param>
         /// <param name="returnKey">The return key.</param>
+        /// <param name="cancelKey"></param>
+        /// <param name="allowPunctuation"></param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        public static bool Prompt(string prompt, out string response, ConsoleKey returnKey = ConsoleKey.Enter)
+        public static bool Prompt(string prompt, out string response, ConsoleKey returnKey = ConsoleKey.Enter, ConsoleKey cancelKey = ConsoleKey.Escape, bool allowPunctuation = true, bool showCursor = true)
         {
             response = default!;
 
@@ -170,13 +172,15 @@ namespace SpartanSystems
 
                 var exit = false;
                 var lineIndex = Console.GetCursorPosition().Top;
+
+                Console.CursorVisible = showCursor;
                 
                 while (true)
                 {
                     if(exit)
                         break;
-                    var consoleKeyInfo = Console.ReadKey();
-
+                    var consoleKeyInfo = Console.ReadKey(true);
+                    
                     switch (consoleKeyInfo.Key)
                     {
                         case ConsoleKey.Enter:
@@ -198,9 +202,13 @@ namespace SpartanSystems
 
                                 break;
                         }
+                        case ConsoleKey.Escape:
+                        {
+                            throw new Exception("User cancelled.");
+                        }
                         default:
                         {
-                            if(char.IsAsciiLetterOrDigit(consoleKeyInfo.KeyChar) || consoleKeyInfo.Key == ConsoleKey.Spacebar)
+                            if(char.IsAsciiLetterOrDigit(consoleKeyInfo.KeyChar) || consoleKeyInfo.Key == ConsoleKey.Spacebar || (allowPunctuation && char.IsPunctuation(consoleKeyInfo.KeyChar)))
                                 stringBuilder.Append(consoleKeyInfo.KeyChar);
 
                             break;
@@ -219,6 +227,7 @@ namespace SpartanSystems
             }
             catch (Exception ex)
             {
+                response = "";
                 return false;
             }
         }
