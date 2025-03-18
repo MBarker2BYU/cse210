@@ -64,6 +64,7 @@ public static class SerializationExtensions
         try
         {
             obj = JsonConvert.DeserializeObject<T>(json, converters);
+            
             return true;
         }
         catch (Exception ex)
