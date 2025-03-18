@@ -1,31 +1,30 @@
 ﻿// ***********************************************************************
 // Assembly        : SpartanSystems
 // Author            : Matthew D. Barker
-// Created           : 03-13-2025
+// Created           : 03-18-2025
 //
 // Last Modified By : Matthew D. Barker
-// Last Modified On : 03-13-2025
+// Last Modified On : 03-18-2025
 // ***********************************************************************
-// <copyright file="ExceptionExtensions.cs" company="SpartanSystems">
+// <copyright file="InvalidJsonException.cs" company="SpartanSystems">
 //     Copyright (c) Spartan Systems. All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
 
-namespace SpartanSystems.Extensions;
+namespace SpartanSystems.Exceptions;
 
 /// <summary>
-/// Class ExceptionExtensions.
+/// Class InvalidJsonException.
+/// Implements the <see cref="System.Exception" />
 /// </summary>
-public static class ExceptionExtensions
+/// <param name="json">The json.</param>
+/// <seealso cref="System.Exception" />
+public class InvalidJsonException(string json) : Exception
 {
     /// <summary>
-    /// Throws if not null.
+    /// Gets the json.
     /// </summary>
-    /// <param name="exception">The exception.</param>
-    public static void ThrowIfNotNull(this Exception? exception)
-    {
-        if (exception is not null) throw exception;
-    }
-
+    /// <value>The json.</value>
+    public string Json { get; } = json;
 }
