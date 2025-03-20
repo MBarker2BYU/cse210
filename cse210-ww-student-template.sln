@@ -38,6 +38,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "week02", "week02", "{B5BEAF5E-7F55-4411-AC6D-7E6DEDAFACB1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Journal", "week02\Journal\Journal.csproj", "{147CC958-797E-4D79-BE88-228E95A8678B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A89ADD42-DE20-4121-A77F-5816958882DD} = {A89ADD42-DE20-4121-A77F-5816958882DD}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resumes", "week02\Resumes\Resumes.csproj", "{DF1CDA63-2463-48B3-A47F-2C81A75225BA}"
 EndProject
@@ -55,7 +58,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineOrdering", "week04\On
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sparta", "Sparta", "{2C431768-27E2-4BE4-A9FD-5441FA32BA46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpartanSystems", "Sparta\SpartanSystems\SpartanSystems.csproj", "{A89ADD42-DE20-4121-A77F-5816958882DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpartanSystems", "Sparta\SpartanSystems\SpartanSystems.csproj", "{A89ADD42-DE20-4121-A77F-5816958882DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
