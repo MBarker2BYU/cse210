@@ -30,18 +30,6 @@ public interface IConsoleMenuBase
     #region Methods
 
     /// <summary>
-    /// Shows this instance.
-    /// </summary>
-    public void Show();
-
-    /// <summary>
-    /// Shows the specified exception.
-    /// </summary>
-    /// <param name="exception">The exception.</param>
-    /// <returns><c>true</c> if the menu is shown successfully , <c>false</c> otherwise.</returns>
-    public bool Show(out Exception exception);
-
-    /// <summary>
     /// Exits this instance.
     /// </summary>
     public void Exit();
@@ -68,13 +56,7 @@ public interface IConsoleMenuBase
     /// </summary>
     /// <value>The color of the selected foreground.</value>
     public ConsoleColor SelectedForegroundColor { get; set; }
-
-    /// <summary>
-    /// Gets the menu items.
-    /// </summary>
-    /// <value>The menu items.</value>
-    public IEnumerable<Enum> MenuItems { get; }
-
+    
     /// <summary>
     /// Gets the start position.
     /// </summary>
