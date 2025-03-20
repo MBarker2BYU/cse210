@@ -1,4 +1,4 @@
-using System;
+namespace ScriptureMemorizer;
 
 class Program
 {
