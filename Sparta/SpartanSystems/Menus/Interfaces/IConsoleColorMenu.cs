@@ -12,13 +12,13 @@
 // <summary></summary>
 // ***********************************************************************
 
-namespace Journal.Sparta.Menus.Interfaces;
+namespace SpartanSystems.Menus.Interfaces;
 
 /// <summary>
 /// Interface IConsoleColorMenu
-/// Extends the <see cref="Journal.Sparta.Menus.Interfaces.IConsoleMenuBase" />
+/// Extends the <see cref="IConsoleMenuBase" />
 /// </summary>
-/// <seealso cref="Journal.Sparta.Menus.Interfaces.IConsoleMenuBase" />
+/// <seealso cref="IConsoleMenuBase" />
 public interface IConsoleColorMenu : IConsoleMenuBase
 {
     /// <summary>

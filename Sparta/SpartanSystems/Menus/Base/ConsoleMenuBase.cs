@@ -1,7 +1,7 @@
-﻿using Journal.Sparta.Menus.EventArgs;
-using Journal.Sparta.Menus.Interfaces;
+﻿using SpartanSystems.Menus.EventArgs;
+using SpartanSystems.Menus.Interfaces;
 
-namespace Journal.Sparta.Menus.Base;
+namespace SpartanSystems.Menus.Base;
 
 public abstract class ConsoleMenuBase(ConsoleColor backgroundColor = ConsoleColor.White, ConsoleColor foregroundColor = ConsoleColor.Black) : IConsoleMenuBase
 {

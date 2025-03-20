@@ -12,9 +12,9 @@
 // <summary></summary>
 // ***********************************************************************
 
-using Journal.Sparta.Menus.EventArgs;
+using SpartanSystems.Menus.EventArgs;
 
-namespace Journal.Sparta.Menus.Interfaces;
+namespace SpartanSystems.Menus.Interfaces;
 
 /// <summary>
 /// Interface IConsoleMenuBase

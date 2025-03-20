@@ -11,7 +11,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-namespace Journal.Sparta.Menus.EventArgs;
+namespace SpartanSystems.Menus.EventArgs;
 
 /// <summary>
 /// Class MenuEventArgs.

@@ -1,4 +1,4 @@
-﻿namespace Journal.Sparta.Menus.Interfaces;
+﻿namespace SpartanSystems.Menus.Interfaces;
 
 public interface IConsoleMenu : IConsoleMenuBase
 {

@@ -1,7 +1,7 @@
-﻿using Journal.Sparta.Menus.Base;
-using Journal.Sparta.Menus.Interfaces;
+﻿using SpartanSystems.Menus.Base;
+using SpartanSystems.Menus.Interfaces;
 
-namespace Journal.Sparta.Menus;
+namespace SpartanSystems.Menus;
 
 public class ConsoleMenu : ConsoleMenuBase, IConsoleMenu
 {

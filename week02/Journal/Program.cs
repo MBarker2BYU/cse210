@@ -1,12 +1,16 @@
 ﻿
-using Journal.Enums;
-using Journal.Sparta.Menus;
-using Journal.Sparta.Menus.EventArgs;
-
 class Program
 {
+    private const string TITLE = "W02 Project: Journal Program";
+    
     public static void Main(string[] args)
     {
+        Console.Clear();
+        Console.WriteLine(TITLE);
+        Console.WriteLine();
+        
+        var mainMenu = 
+        
         
     
     }
