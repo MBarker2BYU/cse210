@@ -13,6 +13,7 @@
 // ***********************************************************************
 
 using System.Text;
+using Newtonsoft.Json;
 
 namespace ScriptureMemorizer;
 
@@ -64,6 +65,7 @@ public class Scripture(ScriptureReference scriptureReference, string text)
     /// Gets a value indicating whether [all word are hidden].
     /// </summary>
     /// <value><c>true</c> if [all word are hidden]; otherwise, <c>false</c>.</value>
+    [JsonIgnore]
     public bool AllWordAreHidden
         => _text.AllWordAreHidden;
 
