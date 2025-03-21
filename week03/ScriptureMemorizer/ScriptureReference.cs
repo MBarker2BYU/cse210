@@ -49,4 +49,7 @@ public class ScriptureReference(string book, int chapter, Verse verse)
     /// </summary>
     /// <value>The verse.</value>
     public Verse Verse {get;} = verse;
+
+    public string Display()
+        => $"{Book} {Chapter}:{Verse}";
 }

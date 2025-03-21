@@ -13,16 +13,22 @@
 // ***********************************************************************
 
 using System.Collections;
+using System.Text;
 
 namespace ScriptureMemorizer;
 
 /// <summary>
 /// Class Words.
-/// Implements the <see cref="System.Collections.Generic.IReadOnlyList{ScriptureMemorizer.Word}" />
+/// Implements the <see>
+///     <cref>System.Collections.Generic.IReadOnlyList{ScriptureMemorizer.Word}</cref>
+/// </see>
 /// </summary>
-/// <seealso cref="System.Collections.Generic.IReadOnlyList{ScriptureMemorizer.Word}" />
+/// <seealso>
+///     <cref>System.Collections.Generic.IReadOnlyList{ScriptureMemorizer.Word}</cref>
+/// </seealso>
 public class Words : IReadOnlyList<Word>
 {
+
     /// <summary>
     /// Initializes a new instance of the <see cref="Words"/> class.
     /// </summary>
@@ -90,7 +96,20 @@ public class Words : IReadOnlyList<Word>
     /// <value><c>true</c> if this instance is all hidden; otherwise, <c>false</c>.</value>
     public bool AllWordAreHidden
         => _words.All(word => word.IsHidden);
+
+    public IReadOnlyList<Word> VisibleWords
+        => _words.Where(word => !word.IsHidden).ToList();
+
+    public string Display()
+    {
+        var display = new StringBuilder();
+
+        foreach (var word in _words)
+            display.Append(word.FormattedText()).Append(" ");
         
+        return display.ToString().TrimEnd();
+    }
+    
 
     #region Overrides of Object
 

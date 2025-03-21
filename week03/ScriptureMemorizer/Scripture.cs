@@ -12,6 +12,8 @@
 // <summary></summary>
 // ***********************************************************************
 
+using System.Text;
+
 namespace ScriptureMemorizer;
 
 /// <summary>
@@ -21,6 +23,9 @@ namespace ScriptureMemorizer;
 /// <param name="text">The text.</param>
 public class Scripture(ScriptureReference scriptureReference, string text)
 {
+    //Random seed
+    private readonly Random _random = new Random(DateTime.Now.Millisecond);
+
     /// <summary>
     /// Gets the reference.
     /// </summary>
@@ -39,7 +44,20 @@ public class Scripture(ScriptureReference scriptureReference, string text)
     /// <exception cref="System.NotImplementedException"></exception>
     public void HideRandomWords(int count)
     {
-        throw new NotImplementedException();
+        for(var index = 0; index<count; index++)
+        {
+            var visibleWords = _text.VisibleWords;
+            
+            while(true)
+            {
+                var wordIndex = _random.Next(0, visibleWords.Count);
+                if (visibleWords[wordIndex].IsHidden) continue;
+                
+                visibleWords[wordIndex].Hide();
+                
+                break;
+            }            
+        }
     }
 
     /// <summary>
@@ -49,10 +67,37 @@ public class Scripture(ScriptureReference scriptureReference, string text)
     public bool AllWordAreHidden
         => _text.AllWordAreHidden;
 
+    public string Display()
+        => WordWrap(Reference.Display(), _text);
+
     /// <summary>
     /// Gets the text.
     /// </summary>
     /// <value>The text.</value>
     public string Text
         => _text.ToString();
+
+    static string WordWrap(string scriptureReference,  Words text)
+    {
+        var paragraph = new StringBuilder(scriptureReference).AppendLine().AppendLine();
+        var line = new StringBuilder();
+
+        for (var index = 0; index < text.Count; index++)
+        {
+            if (line.Length + text[index].Text.Length < Console.BufferWidth - 1)
+            {
+                line.Append(text[index].FormattedText()).Append(' ');
+            }
+            else
+            {
+                paragraph.AppendLine(line.ToString().TrimEnd());
+                line.Clear();
+                line.Append(text[index].FormattedText()).Append(' ');
+            }
+        }
+
+        paragraph.Append(line.ToString());
+
+        return paragraph.ToString();
+    }
 }

@@ -53,7 +53,7 @@ public class Word(string text)
         => _isHidden = true;
 
     /// <summary>
-    /// Formatteds the text.
+    /// Format the text.
     /// </summary>
     /// <returns>System.String.</returns>
     public string FormattedText()
@@ -81,7 +81,7 @@ public class Word(string text)
             }
 
             if (char.IsAsciiLetterOrDigit(character))
-                output.Append('_');
+                output.Append((char)95);
         }
 
         return output.ToString();
