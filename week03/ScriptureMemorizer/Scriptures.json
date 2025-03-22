@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 [
   {
     "Book": "Psalm",
@@ -40,47 +39,4 @@
     "Text": "Do not take revenge, my dear friends, but leave room for God’s wrath, for it is written: “It is mine to avenge; I will repay,” says the Lord.",
     "Reference": "Romans 12:19"
   }
-=======
-[
-  {
-    "Book": "Psalm",
-    "Chapter": 144,
-    "BeginVerse": 1,
-    "EndVerse": 2,
-    "Text": "Praise the Lord, who is my rock. He trains my hands for war, and gives my fingers skill for battle. He is my loving ally and my fortress, my tower of safety, my rescuer. He is my shield, and I take refuge in him. He makes the nations submit to me.",
-    "Reference": "Psalm 144:1-2"
-  },
-  {
-    "Book": "Romans",
-    "Chapter": 13,
-    "BeginVerse": 4,
-    "EndVerse": null,
-    "Text": "For he is God's servant for your good. But if you do wrong, be afraid, for he does not bear the sword in vain.",
-    "Reference": "Romans 13:4"
-  },
-  {
-    "Book": "Psalm",
-    "Chapter": 29,
-    "BeginVerse": 11,
-    "EndVerse": null,
-    "Text": "The Lord gives strength to His people; the Lord blesses His people with peace.",
-    "Reference": "Psalm 29:11"
-  },
-  {
-    "Book": "Timothy",
-    "Chapter": 2,
-    "BeginVerse": 4,
-    "EndVerse": null,
-    "Text": "No soldier in active service entangles himself in the affairs of everyday life, so that he may please the one who enlisted him as a soldier.",
-    "Reference": "Timothy 2:4"
-  },
-  {
-    "Book": "Romans",
-    "Chapter": 12,
-    "BeginVerse": 19,
-    "EndVerse": null,
-    "Text": "Do not take revenge, my dear friends, but leave room for God’s wrath, for it is written: “It is mine to avenge; I will repay,” says the Lord.",
-    "Reference": "Romans 12:19"
-  }
->>>>>>> 344bc19def8400ac6fdcc1f2db3c8757121df06b
 ]
