@@ -19,6 +19,8 @@ using ScriptureMemorizer.Enums;
 using ScriptureMemorizer.Sparta.ExtensionMethods;
 using ScriptureMemorizer.Sparta.Menus;
 
+using ScriptureMemorizer.Sparta;
+
 namespace ScriptureMemorizer;
 
 /// <summary>
@@ -190,7 +192,12 @@ class Program
         
         try
         {
-            var json = File.ReadAllText("Scriptures.json");
+            if(!Utilities.FindFile("Scriptures.json", out var path))
+            {
+                throw new FileNotFoundException("Could not find the Scriptures.json file.");
+            }
+
+            var json = File.ReadAllText(path);
             scriptures = JsonConvert.DeserializeObject<Advanced.Scriptures>(json);
 
             return true;

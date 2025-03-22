@@ -1,7 +1,7 @@
 // ***********************************************************************
-// Assembly        : ScriptureMemorizer
-// Author            : Matthew D. Barker
-// Created           : 03-20-2025
+// Assembly         : ScriptureMemorizer
+// Author           : Matthew D. Barker
+// Created          : 03-20-2025
 //
 // Last Modified By : Matthew D. Barker
 // Last Modified On : 03-20-2025
