@@ -19,10 +19,23 @@ namespace YouTubeVideos.Interfaces;
 /// </summary>
 public interface IVideos : IList<IVideo>, IDisplay
 {
-    #region Implementation of ICollection<IVideo>
-
+    #region Implementation of ICollection<IVideo>    
+    
+    /// <summary>
+    /// Adds the specified title.
+    /// </summary>
+    /// <param name="title">The title.</param>
+    /// <param name="author">The author.</param>
+    /// <param name="length">The length.</param>
     public void Add(string title, Person author, long length);
 
+    /// <summary>
+    /// Adds the specified title.
+    /// </summary>
+    /// <param name="title">The title.</param>
+    /// <param name="firstName">The first name.</param>
+    /// <param name="lastname">The lastname.</param>
+    /// <param name="length">The length.</param>
     public void Add(string title, string firstName, string lastname, long length);
     
     #endregion

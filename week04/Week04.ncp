@@ -1,0 +1,596 @@
+<Project>
+  <Name>Week04</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>OnlineOrdering</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Interface">
+        <Name>IProduct</Name>
+        <Access>Public</Access>
+        <Location left="1294" top="141" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">string ID { get; }</Member>
+        <Member type="Property">string Name { get; }</Member>
+        <Member type="Property">decimal Price { get; }</Member>
+        <Member type="Property">int Quantity { get; }</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IOrder</Name>
+        <Access>Public</Access>
+        <Location left="1548" top="323" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void AddItem(IProduct product)</Member>
+        <Member type="Method">void RemoveItem(string id)</Member>
+        <Member type="Property">ICustomer Customer { get; }</Member>
+        <Member type="Property">IReadOnlyList&lt;IProduct&gt; Items { get; }</Member>
+        <Member type="Property">string PackingLabel { get; }</Member>
+        <Member type="Property">string ShippingLabel { get; }</Member>
+        <Member type="Property">string Invoice { get; }</Member>
+        <Member type="Property">decimal TotalCost { get; }</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>ICustomer</Name>
+        <Access>Public</Access>
+        <Location left="1548" top="616" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">string Name { get; }</Member>
+        <Member type="Property">IAddress Address { get; }</Member>
+        <Member type="Property">bool IsUSA { get; }</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IAddress</Name>
+        <Access>Public</Access>
+        <Location left="1548" top="883" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">string Street { get; }</Member>
+        <Member type="Property">string City { get; }</Member>
+        <Member type="Property">string Region { get; }</Member>
+        <Member type="Property">string Country { get; }</Member>
+        <Member type="Property">bool IsUSA { get; }</Member>
+      </Entity>
+      <Entity type="Enum">
+        <Name>Country</Name>
+        <Access>Public</Access>
+        <Location left="534" top="616" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>China</Value>
+        <Value>SouthKorea</Value>
+        <Value>UnitedStates</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>Address</Name>
+        <Access>Public</Access>
+        <Location left="1021" top="616" />
+        <Size width="162" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Country _country</Member>
+        <Member type="Constructor">public Address(string street, string city, string region, Country country)</Member>
+        <Member type="Constructor">public Address(string street, string city, string region, string country)</Member>
+        <Member type="Property">public string Street { get; }</Member>
+        <Member type="Property">public string City { get; }</Member>
+        <Member type="Property">public string Region { get; }</Member>
+        <Member type="Property">public bool IsUSA { get; }</Member>
+        <Member type="Method">public override string ToString()</Member>
+        <Member type="Method">public static string InsertSpaces(string value)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CountryInfoAttribute</Name>
+        <Access>Public</Access>
+        <Location left="277" top="616" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">internal CountryInfoAttribute()</Member>
+        <Member type="Property">public string Code { get; }</Member>
+        <Member type="Property">public int PhoneCode { get; }</Member>
+        <Member type="Property">public string Name { get; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Customer</Name>
+        <Access>Public</Access>
+        <Location left="1294" top="616" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Customer()</Member>
+        <Member type="Property">public string Name { get; }</Member>
+        <Member type="Property">public bool IsUSA { get; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Items</Name>
+        <Access>Public</Access>
+        <Location left="767" top="141" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Order</Name>
+        <Access>Public</Access>
+        <Location left="767" top="529" />
+        <Size width="162" height="312" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private readonly Items _items</Member>
+        <Member type="Constructor">public Order(ICustomer customer)</Member>
+        <Member type="Property">public ICustomer Customer { get; }</Member>
+        <Member type="Property">public IReadOnlyList&lt;IProduct&gt; Items { get; }</Member>
+        <Member type="Method">public void AddItem(IProduct product)</Member>
+        <Member type="Method">public void RemoveItem(string productId)</Member>
+        <Member type="Method">private string BuildPackingLabel()</Member>
+        <Member type="Method">private string BuildShippingLabel()</Member>
+        <Member type="Method">private string BuildInvoice()</Member>
+        <Member type="Property">public string PackingLabel { get; }</Member>
+        <Member type="Property">public string ShippingLabel { get; }</Member>
+        <Member type="Property">public string Invoice { get; }</Member>
+        <Member type="Property">public decimal TotalCost { get; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Product</Name>
+        <Access>Public</Access>
+        <Location left="500" top="141" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Product(string id, string name, decimal price, int quantity = 1)</Member>
+        <Member type="Property">public string ID { get; }</Member>
+        <Member type="Property">public string Name { get; }</Member>
+        <Member type="Property">public decimal Price { get; }</Member>
+        <Member type="Property">public int Quantity { get; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>List&lt;IProduct&gt;</Name>
+        <Access>Public</Access>
+        <Location left="1021" top="141" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Dependency" first="2" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1631</X>
+          <Y>857</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1631</X>
+          <Y>858</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="1" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="9" second="1">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>880</X>
+          <Y>505</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1515</X>
+          <Y>505</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="9" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>847</X>
+          <Y>877</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>631</X>
+          <Y>928</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="7" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="5" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1112</X>
+          <Y>901</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1504</X>
+          <Y>1028</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="8" second="11">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="11" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="8" second="9">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="10" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>591</X>
+          <Y>84</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="6" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>YouTubeVideos</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Interface">
+        <Name>IComment</Name>
+        <Access>Public</Access>
+        <Location left="1478" top="77" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">IPerson Person { get; set; }</Member>
+        <Member type="Property">string Text { get; }</Member>
+        <Member type="Property">byte Stars { get; }</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IComments</Name>
+        <Access>Public</Access>
+        <Location left="661" top="77" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IDisplay</Name>
+        <Access>Public</Access>
+        <Location left="1825" top="77" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void Display()</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IPerson</Name>
+        <Access>Public</Access>
+        <Location left="1478" top="350" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">string FirstName { get; }</Member>
+        <Member type="Property">string LastName { get; }</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IVideo</Name>
+        <Access>Public</Access>
+        <Location left="1478" top="598" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">string Title { get; }</Member>
+        <Member type="Property">IPerson Author { get; }</Member>
+        <Member type="Property">long Length { get; }</Member>
+        <Member type="Property">IComments Comments { get; }</Member>
+        <Member type="Method">void AddComment(IComment comment)</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IVideos</Name>
+        <Access>Public</Access>
+        <Location left="1478" top="905" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void Add(string title, Person author, long length)</Member>
+        <Member type="Method">void Add(string title, string firstName, string lastname, long length)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>Person</Name>
+        <Access>Public</Access>
+        <Location left="1180" top="350" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Person()</Member>
+        <Member type="Constructor">internal Person(string firstName, string lastName)</Member>
+        <Member type="Property">public string FirstName { get; }</Member>
+        <Member type="Property">public string LastName { get; }</Member>
+        <Member type="Method">public void Display()</Member>
+        <Member type="Method">public override string ToString()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Comment</Name>
+        <Access>Public</Access>
+        <Location left="1180" top="77" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Comment()</Member>
+        <Member type="Constructor">internal Comment(IPerson person, string text, byte stars = 5)</Member>
+        <Member type="Constructor">internal Comment(string firstName, string lastName, string text, byte stars = 5)</Member>
+        <Member type="Method">public void Display()</Member>
+        <Member type="Property">public IPerson Person { get; }</Member>
+        <Member type="Property">public string Text { get; }</Member>
+        <Member type="Property">public byte Stars { get; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Video</Name>
+        <Access>Public</Access>
+        <Location left="993" top="772" />
+        <Size width="162" height="234" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Video()</Member>
+        <Member type="Constructor">internal Video(string title, string firstName, string lastName, long length)</Member>
+        <Member type="Method">public void AddComment(IComment comment)</Member>
+        <Member type="Method">public void AddComment(IPerson person, string text, byte stars)</Member>
+        <Member type="Method">public void AddComment(string firstName, string lastName, string text)</Member>
+        <Member type="Method">public void Display()</Member>
+        <Member type="Property">public string Title { get; }</Member>
+        <Member type="Property">public IPerson Author { get; }</Member>
+        <Member type="Property">public IComments Comments { get; private set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IReadOnlyList&lt;IComment&gt;</Name>
+        <Access>Public</Access>
+        <Location left="922" top="77" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+      </Entity>
+      <Entity type="Class">
+        <Name>List&lt;IComment&gt;</Name>
+        <Access>Public</Access>
+        <Location left="922" top="350" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Comments</Name>
+        <Access>Public</Access>
+        <Location left="661" top="350" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Videos</Name>
+        <Access>Public</Access>
+        <Location left="433" top="772" />
+        <Size width="162" height="234" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void Display()</Member>
+        <Member type="Method">public void Add(string title, Person author, long length)</Member>
+        <Member type="Method">public void Add(string title, string firstName, string lastName, long length)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>List&lt;IVideo&gt;</Name>
+        <Access>Public</Access>
+        <Location left="728" top="772" />
+        <Size width="162" height="234" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Dependency" first="0" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="3" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1682</X>
+          <Y>456</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1877</X>
+          <Y>320</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="4" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1718</X>
+          <Y>704</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1904</X>
+          <Y>322</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="5" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1924</X>
+          <Y>1013</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1935</X>
+          <Y>320</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="6" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="0" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1559</X>
+          <Y>313</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1559</X>
+          <Y>325</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="7" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="8" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="4" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1684</X>
+          <Y>674</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1665</X>
+          <Y>493</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="1" second="9">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>864</X>
+          <Y>189</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>892</X>
+          <Y>189</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="9" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1109</X>
+          <Y>53</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1417</X>
+          <Y>158</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="11" second="10">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="10" second="1">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="12" second="5">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>527</X>
+          <Y>1087</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="13" second="8">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="12" second="13">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>620</X>
+          <Y>861</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="13" second="5">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1453</X>
+          <Y>1039</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="11" second="8">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>744</X>
+          <Y>633</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1215</X>
+          <Y>857</Y>
+        </BendPoint>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
