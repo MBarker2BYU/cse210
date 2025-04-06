@@ -12,6 +12,7 @@ class Program
 
     static void Main(string[] args)
     {
+        Console.WriteLine();
         Console.WriteLine("Welcome to Eternal Quest!");
         Console.Write("Enter your name: ");
 
