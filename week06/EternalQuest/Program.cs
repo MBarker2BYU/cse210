@@ -12,6 +12,7 @@ class Program
 
     static void Main(string[] args)
     {
+        Console.Clear();
         Console.WriteLine();
         Console.WriteLine("Welcome to Eternal Quest!");
         Console.Write("Enter your name: ");
@@ -19,6 +20,9 @@ class Program
         sm_PlayerOne = new Player(Console.ReadLine());
 
         Console.WriteLine($"\nGreetings, {sm_PlayerOne.Name}! Your journey to return to our Father in Heaven begins...");
+        Console.WriteLine();
+
+        PressEnterToContinue();
 
         DisplayHeader(true);
 
