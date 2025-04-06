@@ -1,9 +1,88 @@
-﻿namespace Mindfulness.Sparta.Helpers;
+﻿using Microsoft.VisualBasic;
+
+namespace Mindfulness.Sparta.Helpers;
 
 public class ConsoleHelper
 {
     public static readonly string Indent = new(' ', 2);
 
+    private static readonly List<char> sm_SixDotBraille = SixDotBraille();
+    private static readonly List<char> sm_EightDotBraille = Eight8DotBraille();
+    private static readonly Dictionary<ConsoleColor, string> sm_ColorMap;
+    
+    static ConsoleHelper()
+    {
+
+        sm_ColorMap = new Dictionary<ConsoleColor, string>
+        {
+            { ConsoleColor.Black, "\x1b[30m" },
+            { ConsoleColor.Red, "\x1b[31m" },
+            { ConsoleColor.Green, "\x1b[32m" },
+            { ConsoleColor.Yellow, "\x1b[33m" },
+            { ConsoleColor.Blue, "\x1b[34m" },
+            { ConsoleColor.Magenta, "\x1b[35m" },
+            { ConsoleColor.Cyan, "\x1b[36m" },
+            { ConsoleColor.White, "\x1b[37m" }
+        };
+
+    }
+    
+    public static string ReadLine(int timeoutMilliseconds)
+    {
+        using var cts = new CancellationTokenSource(timeoutMilliseconds);
+
+        Task<string> inputTask = Task.Run(Console.ReadLine, cts.Token)!;
+
+        try
+        {
+            inputTask.Wait(cts.Token);
+            return inputTask.Result;
+        }
+        catch (OperationCanceledException)
+        {
+            return null!;
+        }
+        catch (AggregateException ex)
+        {
+            if (ex.InnerException is OperationCanceledException)
+            {
+                return null!;
+            }
+            throw;
+        }
+    }
+
+
+    public static void Animate((int Left, int Top) cursorLocation,  out CancellationTokenSource source, int interval = 500, ConsoleColor color = ConsoleColor.White)
+    {
+        source = new CancellationTokenSource();
+        var token = source.Token;
+
+        Task.Run(() =>
+        {
+            var index = 0;
+            var colorCode = sm_ColorMap[color];
+
+            while (true)
+            {
+                if (token.IsCancellationRequested)
+                    break;
+
+                Console.SetCursorPosition(cursorLocation.Left, cursorLocation.Top);
+
+                Console.Write($"{colorCode}{sm_EightDotBraille[index]}\x1b[0m");
+                
+                if (index + 1 >= sm_EightDotBraille.Count)
+                    index = 0;
+                else
+                    index++;
+
+                Thread.Sleep(interval);
+            }
+
+        }, token);
+    }
+    
     public static void PressEnterToContinue()
     {
 
@@ -24,13 +103,21 @@ public class ConsoleHelper
             Console.WriteLine();
     }
 
+    //public static void WriteLinePlus(string? value, bool clear = false, int leadingLines = 0, int trailingLines = 0)
+    //    => WriteLinePlus(value, out _, clear, leadingLines, trailingLines);
+
+    //public static void WriteLinePlus(string? value, out (int Left, int Top) endPosition, bool clear = false, int leadingLines = 0, int trailingLines = 0)
     public static void WriteLinePlus(string? value, bool clear = false, int leadingLines = 0, int trailingLines = 0)
     {
+        //endPosition = Console.GetCursorPosition();
+
         if (clear)
             Console.Clear();
 
         AddLines(leadingLines);
         Console.WriteLine(value);
+        //endPosition = Console.GetCursorPosition();
+        //Console.SetCursorPosition(value.Length + 1, endPosition.Top - 1);
         AddLines(trailingLines);
     }
 

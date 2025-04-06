@@ -1,5 +1,6 @@
 ﻿using Mindfulness.Base;
 using Mindfulness.Sparta.ExtensionMethods;
+using System.Threading.Tasks;
 using static Mindfulness.Sparta.Helpers.ConsoleHelper;
 
 namespace Mindfulness;
@@ -8,7 +9,7 @@ public class ListingActivity : RandomPromptBase
 {
     private const string NAME = "Listing";
     private const string DESCRIPTION = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
-
+    
     #region Overrides of ActivityBase
 
     protected override bool RunActivity(out Exception exception)
@@ -29,17 +30,30 @@ public class ListingActivity : RandomPromptBase
                 return false;
             }
 
-            WriteLinePlus("List as many thoughts below as possible given this prompt.", true, 1);
-            WriteLinePlus(prompt.Text, leadingLines: 1);
-
-            PressEnterToContinue();
-
             StandbyReadyBegin(top: 1, clear: true);
 
+            WriteLinePlus("List as many thoughts below as possible given this prompt.", true, 1);
+            WriteLinePlus(prompt.Text, leadingLines: 1);
+            
+            var timestamp = DateTime.Now;
+            var entries = new List<string>();
 
+            while (true)
+            {
+                var elapsedTime = DateTime.Now.Subtract(timestamp).TotalSeconds;
 
+                if(elapsedTime > _Duration * 1000)
+                    break;
 
-            WriteLinePlus($"Outstanding!  You completed {_Duration:#,##0} seconds of the {NAME} activity.", trailingLines: 1, clear: true);
+                var input = ReadLine((_Duration * 1000) - (int)(elapsedTime * 1000));
+
+                if(input == null)
+                    break;
+
+                entries.Add(input);
+            }
+            
+            WriteLinePlus($"Outstanding! You completed {entries.Count} entries in {_Duration:#,##0} seconds of the {NAME} activity.", trailingLines: 1, clear: true);
 
             PressEnterToContinue();
 

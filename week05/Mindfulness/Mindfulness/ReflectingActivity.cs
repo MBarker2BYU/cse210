@@ -29,13 +29,13 @@ public sealed class ReflectingActivity : RandomQuestionBase
                 return false;
             }
 
+            StandbyReadyBegin(top: 1, clear: true);
+
             WriteLinePlus("With the following prompt in mind what are your thoughts?", true, 1);
             WriteLinePlus(prompt.Text, leadingLines:1);
 
             PressEnterToContinue();
-
-            StandbyReadyBegin(top: 1, clear: true);
-
+            
             var timestamp = DateTime.Now;
 
             while (true)

@@ -37,6 +37,8 @@ public class Program
             { ActivityMenu.StartListingActivity, new ListingActivity() }
         };
 
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        
         OpeningMessage();
         
         var menu = new ConsoleMenu();
@@ -57,7 +59,7 @@ public class Program
                     }
 
                     OpeningMessage();
-
+                    
                     break;
                 case ActivityMenu.Quit:
                     consoleMenu.Exit();
