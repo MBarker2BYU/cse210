@@ -40,6 +40,8 @@ public sealed class ReflectingActivity : RandomQuestionBase
 
             while (true)
             {
+                Console.CursorVisible = false;
+
                 if(DateTime.Now.Subtract(timestamp).TotalSeconds >= _Duration)
                     break;
                 
@@ -49,12 +51,19 @@ public sealed class ReflectingActivity : RandomQuestionBase
                     return false;
                 }
 
-                WriteLinePlus(question.Text, leadingLines: 1);
-
+                WritePlusAnimation(question.Text, out var animationPosition, leadingLines: 1, timeout: 3000, color: ConsoleColor.Yellow);
+                
                 Thread.Sleep(3000);
+
+                var cursorLocation = Console.GetCursorPosition();
+                Clear(animationPosition, 5);
+                Console.SetCursorPosition(cursorLocation.Left, cursorLocation.Top);
+
             }
 
-            WriteLinePlus($"Outstanding!  You completed {_Duration:#,##0} seconds of the {NAME} activity.", trailingLines: 1, leadingLines: 1);
+            Console.CursorVisible = true;
+
+            WriteLinePlus($"Outstanding! You completed {_Duration:#,##0} seconds of the {NAME} activity.", trailingLines: 1, leadingLines: 2);
 
             PressEnterToContinue();
 

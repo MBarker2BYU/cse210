@@ -22,7 +22,14 @@ public class ConsoleHelper
             { ConsoleColor.Blue, "\x1b[34m" },
             { ConsoleColor.Magenta, "\x1b[35m" },
             { ConsoleColor.Cyan, "\x1b[36m" },
-            { ConsoleColor.White, "\x1b[37m" }
+            { ConsoleColor.White, "\x1b[37m" },
+            { ConsoleColor.Gray, "\x1b[90m" },
+            { ConsoleColor.DarkRed, "\x1b[91m" },
+            { ConsoleColor.DarkGreen, "\x1b[92m" },
+            { ConsoleColor.DarkYellow, "\x1b[93m" },
+            { ConsoleColor.DarkBlue, "\x1b[94m" },
+            { ConsoleColor.DarkMagenta, "\x1b[95m" },
+            { ConsoleColor.DarkCyan, "\x1b[96m" }
         };
 
     }
@@ -53,14 +60,14 @@ public class ConsoleHelper
     }
 
 
-    public static void Animate((int Left, int Top) cursorLocation,  out CancellationTokenSource source, int interval = 500, ConsoleColor color = ConsoleColor.White)
+    public static void Animate((int Left, int Top) cursorLocation, CancellationToken token, int interval = 500, ConsoleColor color = ConsoleColor.White)
     {
-        source = new CancellationTokenSource();
-        var token = source.Token;
-
+        
         Task.Run(() =>
         {
             var index = 0;
+            var index2 = 3;
+
             var colorCode = sm_ColorMap[color];
 
             while (true)
@@ -70,12 +77,17 @@ public class ConsoleHelper
 
                 Console.SetCursorPosition(cursorLocation.Left, cursorLocation.Top);
 
-                Console.Write($"{colorCode}{sm_EightDotBraille[index]}\x1b[0m");
+                Console.Write($"{colorCode}{sm_EightDotBraille[index]}{sm_EightDotBraille[index2]}\x1b[0m");
                 
                 if (index + 1 >= sm_EightDotBraille.Count)
                     index = 0;
                 else
                     index++;
+
+                if (index2 + 1 >= sm_EightDotBraille.Count)
+                    index = 0;
+                else
+                    index2++;
 
                 Thread.Sleep(interval);
             }
@@ -103,22 +115,31 @@ public class ConsoleHelper
             Console.WriteLine();
     }
 
-    //public static void WriteLinePlus(string? value, bool clear = false, int leadingLines = 0, int trailingLines = 0)
-    //    => WriteLinePlus(value, out _, clear, leadingLines, trailingLines);
-
-    //public static void WriteLinePlus(string? value, out (int Left, int Top) endPosition, bool clear = false, int leadingLines = 0, int trailingLines = 0)
+    
     public static void WriteLinePlus(string? value, bool clear = false, int leadingLines = 0, int trailingLines = 0)
     {
-        //endPosition = Console.GetCursorPosition();
-
         if (clear)
             Console.Clear();
 
         AddLines(leadingLines);
         Console.WriteLine(value);
-        //endPosition = Console.GetCursorPosition();
-        //Console.SetCursorPosition(value.Length + 1, endPosition.Top - 1);
         AddLines(trailingLines);
+    }
+
+    public static void WritePlusAnimation(string value, out (int Left, int Top) animationPosition, bool clear = false, int leadingLines = 0, int trailingLines = 0,int timeout = 1000, int interval = 100, ConsoleColor color = ConsoleColor.White)
+    {
+        if (clear)
+            Console.Clear();
+
+        AddLines(leadingLines);
+        Console.Write(value);
+
+        animationPosition = Console.GetCursorPosition();
+        var cts = new CancellationTokenSource(timeout);
+
+        Animate((animationPosition.Left + 2, animationPosition.Top), cts.Token, color: color);
+
+        AddLines(trailingLines + 1);
     }
 
     public static bool NumberPrompt(out int number, string prompt="Please enter a number.")
